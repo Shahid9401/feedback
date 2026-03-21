@@ -12,7 +12,7 @@ st.set_page_config(
     page_title="Student Feedback Portal",
     page_icon="📝",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 # ============================================================
@@ -38,13 +38,21 @@ body {
 /* Card UI */
 .css-card {
     background: rgba(255,255,255,0.92);
+    color: #111827;
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 16px;
-    padding: 18px 18px;
+    padding: 18px;
     margin-bottom: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
+@media (prefers-color-scheme: dark) {
+    .css-card {
+        background: rgba(30, 30, 30, 0.85);
+        color: #f3f4f6;
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+}
 /* Instructions box */
 .instruction-box {
     background: rgba(255,255,255,0.08);
@@ -116,6 +124,9 @@ div.stButton > button:hover, div.stFormSubmitButton > button:hover {
     color: rgba(0,0,0,0.55);
     margin-top: 4px;
     margin-bottom: 0;
+}
+section[data-testid="stSidebar"] {
+    transform: translateX(-100%);
 }
 </style>
 """, unsafe_allow_html=True)
@@ -419,7 +430,7 @@ def show_login_page():
 
     with col2:
         email = st.text_input("Email ID")
-        dept = st.selectbox("Class / Programme", [
+        dept = st.radio("Class / Programme", [
         "Select Programme",
 
         # --- UG PROGRAMMES ---
