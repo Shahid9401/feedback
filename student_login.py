@@ -129,7 +129,7 @@ section[data-testid="stSidebar"] {
     transform: translateX(-100%);
 }
 div[data-baseweb="select"] input {
-    pointer-events: none;
+    pointer-events: none !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -433,39 +433,61 @@ def show_login_page():
 
     with col2:
         email = st.text_input("Email ID")
-        dept = st.selectbox("Class / Programme", [
-        "Select Programme",
+        # ============================================================
+        # ✅ PROGRAMME LIST
+        # ============================================================
+        programmes = [
+            "Select Programme",
 
-        # --- UG PROGRAMMES ---
-        "B.A English Language & Literature",
-        "BBA",
-        "B.Com Finance",
-        "B.Com Computer Application",
-        "B.Com Travel & Tourism",
-        "B.Com Co-Operation",
-        "B.Com Banking & Insurance",
-        "B.Sc Physics",
-        "B.Sc Psychology",
-        "B.Sc Chemistry",
-        "B.Sc Food Technology",
-        "B.Sc Geology",
-        "BCA",
-        "B.Sc Computer Science",
-        "B.Sc Mathematics",
-        "B.A Economics"
+            "B.A English Language & Literature",
+            "BBA",
+            "B.Com Finance",
+            "B.Com Computer Application",
+            "B.Com Travel & Tourism",
+            "B.Com Co-Operation",
+            "B.Com Banking & Insurance",
+            "B.Sc Physics",
+            "B.Sc Psychology",
+            "B.Sc Chemistry",
+            "B.Sc Food Technology",
+            "B.Sc Geology",
+            "BCA",
+            "B.Sc Computer Science",
+            "B.Sc Mathematics",
+            "B.A Economics",
+            "M.Com Finance",
+            "M.A English",
+            "M.Sc Physics",
+            "M.Sc Chemistry",
+            "M.Sc Food Science & Technology"
+        ]
 
-        # --- PG PROGRAMMES ---
-        "M.Com Finance",
-        "M.A English",
-        "M.Sc Physics",
-        "M.Sc Chemistry",
-        "M.Sc Food Science & Technology"
+        # ============================================================
+        # ✅ SESSION STATE INIT
+        # ============================================================
+        if "selected_programme" not in st.session_state:
+            st.session_state.selected_programme = "Select Programme"
 
-        # --- (Optional - if applicable in your college) ---
-        # "BCA",
-        # "B.Sc Mathematics",
-        # "B.Sc Chemistry"
-        ])
+        # ============================================================
+        # ✅ PROGRAMME SELECTOR
+        # ============================================================
+        st.markdown("### 🎓 Class / Programme")
+
+        with st.expander(f"📘 {st.session_state.selected_programme}", expanded=False):
+
+            selected = st.radio(
+                "Choose your programme",
+                programmes[1:],
+                key="programme_radio"
+            )
+
+            if selected:
+                st.session_state.selected_programme = selected
+                st.rerun()
+
+        # Final value
+        dept = st.session_state.selected_programme
+
         sem = st.selectbox("Semester", ["Select Semester", "First", "Second", "Third", "Fourth", "Fifth", "Sixth"])
 
     st.markdown("<br>", unsafe_allow_html=True)
