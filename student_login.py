@@ -483,7 +483,6 @@ def show_login_page():
 
             if selected:
                 st.session_state.selected_programme = selected
-                st.rerun()
 
         # Final value
         dept = st.session_state.selected_programme
