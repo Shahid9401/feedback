@@ -126,10 +126,21 @@ div.stButton > button:hover, div.stFormSubmitButton > button:hover {
     margin-bottom: 0;
 }
 section[data-testid="stSidebar"] {
-    transform: translateX(-100%);
+    display: none !important;
 }
 div[data-baseweb="select"] input {
     pointer-events: none !important;
+}
+.question-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+}
+
+@media (prefers-color-scheme: dark) {
+    .question-text {
+        color: #f3f4f6;
+    }
 }
 </style>
 """, unsafe_allow_html=True)
@@ -481,9 +492,10 @@ def show_login_page():
                 key="programme_radio"
             )
 
-            if selected:
+            if selected and selected != st.session_state.selected_programme:
                 st.session_state.selected_programme = selected
-
+                st.session_state.programme_expanded = False
+                st.rerun()
         # Final value
         dept = st.session_state.selected_programme
 
@@ -688,11 +700,11 @@ def show_questions_page():
 
                     st.markdown(f"""
                     <div class="css-card">
-                        <div style="font-size:16px; font-weight:650; color:#1F2937; margin-bottom:10px;">
+                        <div class="question-text">
                             {q['id']}. {q['q']}
                         </div>
                     """, unsafe_allow_html=True)
-
+                    
                     st.radio(
                         f"Select response for Q{q['id']}",
                         q["options"],
