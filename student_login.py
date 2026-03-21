@@ -128,6 +128,9 @@ div.stButton > button:hover, div.stFormSubmitButton > button:hover {
 section[data-testid="stSidebar"] {
     transform: translateX(-100%);
 }
+div[data-baseweb="select"] input {
+    pointer-events: none;
+}
 </style>
 """, unsafe_allow_html=True)
 
