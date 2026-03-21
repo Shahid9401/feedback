@@ -142,6 +142,17 @@ div[data-baseweb="select"] input {
         color: #f3f4f6;
     }
 }
+.suggestion-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+}
+
+@media (prefers-color-scheme: dark) {
+    .suggestion-title {
+        color: #f3f4f6;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -716,7 +727,7 @@ def show_questions_page():
                     st.markdown("</div>", unsafe_allow_html=True)
         st.markdown("""
         <div class="css-card">
-            <div style="font-size:16px; font-weight:650; color:#1F2937; margin-bottom:10px;">
+            <div class="suggestion-title">
                 💡 Any other suggestions / comments (optional)
             </div>
         </div>
