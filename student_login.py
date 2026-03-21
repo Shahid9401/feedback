@@ -430,7 +430,7 @@ def show_login_page():
 
     with col2:
         email = st.text_input("Email ID")
-        dept = st.radio("Class / Programme", [
+        dept = st.selectbox("Class / Programme", [
         "Select Programme",
 
         # --- UG PROGRAMMES ---
