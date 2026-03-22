@@ -61,38 +61,49 @@ body {
     padding: 14px;
     margin-top: 10px;
 }
-            
-/* 1. HIDE ALL STREAMLIT BRANDING AND FLOATING WIDGETS */
-#MainMenu {visibility: hidden; display: none !important;}
-header {visibility: hidden; display: none !important;}
-footer {visibility: hidden; display: none !important;}
+/* ─────────────────────────────────────────────── */
+/*  Most reliable ways to hide status + deploy widgets 2025–2026 */
+/* ─────────────────────────────────────────────── */
 
-/* Target the specific "Red/Green" status and Cloud badges */
-[data-testid="stStatusWidget"], 
-[data-testid="stDecoration"], 
-[data-testid="stToolbar"],
-.stDeployButton,
-.viewerBadge,
-#viewerBadge {
-    display: none !important;
+[data-testid="stStatusWidget"] {
     visibility: hidden !important;
+    display: none !important;
     height: 0 !important;
     width: 0 !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
 }
 
-/* 2. REMOVE EXTRA BOTTOM PADDING (Fixes the white bar on mobile) */
-.main .block-container {
-    padding-bottom: 0rem !important;
+[data-testid="stDecoration"] {
+    display: none !important;
 }
 
-/* Ensure the app content takes up the full height without scrolling for ghosts */
-.stApp {
-    bottom: 0 !important;
-    height: 100vh !important;
+.stDeployButton,
+.stAppDeployButton,
+[data-testid="stToolbar"] > div > button[data-testid*="Deploy"] {
+    display: none !important;
+    visibility: hidden !important;
 }
-            
+
+/* Newer viewer / status badge (2024–2025) */
+.viewerBadge,
+#viewerBadge,
+[data-testid="stAppViewBadge"],
+[data-testid="stAppChrome"] [data-testid*="badge"] {
+    display: none !important;
+}
+
+/* Sometimes the running indicator is wrapped differently */
+div[data-testid="stStatusWidget"] ~ div,
+div[data-testid="stStatusWidget"] {
+    display: none !important;
+}
+
+/* Final nuke option — hide anything in bottom-right toolbar area */
+section[data-testid="stSidebar"] ~ div,
+.stApp > div:last-child,
+.stApp [data-testid*="chrome"] > div:last-child {
+    display: none !important;
+}
+                        
 /* Sidebar background */
 section[data-testid="stSidebar"] > div {
     background: linear-gradient(180deg, #2a0b5e 0%, #4a167f 100%);
