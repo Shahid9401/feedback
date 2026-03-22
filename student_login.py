@@ -62,25 +62,35 @@ body {
     margin-top: 10px;
 }
             
-/* FORCE HIDE all Streamlit branding and floating status bars */
-#MainMenu {visibility: hidden;}
-header {visibility: hidden;}
-footer {visibility: hidden;}
+/* 1. HIDE ALL STREAMLIT BRANDING AND FLOATING WIDGETS */
+#MainMenu {visibility: hidden; display: none !important;}
+header {visibility: hidden; display: none !important;}
+footer {visibility: hidden; display: none !important;}
 
-/* Target the specific floating 'Hosted/Manage' badges and status icons */
-div[data-testid="stStatusWidget"], 
-div[data-testid="stDecoration"], 
-div[data-testid="stToolbar"],
+/* Target the specific "Red/Green" status and Cloud badges */
+[data-testid="stStatusWidget"], 
+[data-testid="stDecoration"], 
+[data-testid="stToolbar"],
 .stDeployButton,
-.viewerBadge {
+.viewerBadge,
+#viewerBadge {
     display: none !important;
     visibility: hidden !important;
     height: 0 !important;
+    width: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
-/* Fix for mobile where a small white bar might still show at the bottom */
+/* 2. REMOVE EXTRA BOTTOM PADDING (Fixes the white bar on mobile) */
+.main .block-container {
+    padding-bottom: 0rem !important;
+}
+
+/* Ensure the app content takes up the full height without scrolling for ghosts */
 .stApp {
     bottom: 0 !important;
+    height: 100vh !important;
 }
             
 /* Sidebar background */
