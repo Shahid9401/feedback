@@ -1,0 +1,6 @@
+[client]
+toolbarMode = "viewer"      # hides most developer icons/buttons (rerun, settings, deploy in many cases)
+                            # You can also try "minimal" if you want even stricter hiding
+
+[ui]
+hideTopBar = true           # hides the top loading / "running" indicator area
