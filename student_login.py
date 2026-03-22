@@ -62,18 +62,27 @@ body {
     margin-top: 10px;
 }
             
-/* Hide Streamlit floating elements */
-[data-testid="stToolbar"] {
+/* FORCE HIDE all Streamlit branding and floating status bars */
+#MainMenu {visibility: hidden;}
+header {visibility: hidden;}
+footer {visibility: hidden;}
+
+/* Target the specific floating 'Hosted/Manage' badges and status icons */
+div[data-testid="stStatusWidget"], 
+div[data-testid="stDecoration"], 
+div[data-testid="stToolbar"],
+.stDeployButton,
+.viewerBadge {
     display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
 }
 
-[data-testid="stDecoration"] {
-    display: none !important;
+/* Fix for mobile where a small white bar might still show at the bottom */
+.stApp {
+    bottom: 0 !important;
 }
-
-[data-testid="stStatusWidget"] {
-    display: none !important;
-}
+            
 /* Sidebar background */
 section[data-testid="stSidebar"] > div {
     background: linear-gradient(180deg, #2a0b5e 0%, #4a167f 100%);
