@@ -15,6 +15,11 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+[client]
+toolbarMode = "viewer"      # or "minimal" — hides most dev icons/buttons
+
+[ui]
+hideTopBar = true           # hides the top loading / running man area
 # ============================================================
 # ✅ GLOBAL CSS (HIDE STREAMLIT UI + PREMIUM UI)
 # ============================================================
@@ -61,37 +66,31 @@ body {
     padding: 14px;
     margin-top: 10px;
 }
-/* 1. HIDE ALL STREAMLIT BRANDING AND FLOATING WIDGETS */
-#MainMenu {visibility: hidden; display: none !important;}
-header {visibility: hidden; display: none !important;}
-footer {visibility: hidden; display: none !important;}
 
-/* Target the specific "Red/Green" status and Cloud badges */
-[data-testid="stStatusWidget"], 
-[data-testid="stDecoration"], 
-[data-testid="stToolbar"],
+/* ─────────────────────────────────────── */
+/* 2025–2026 reliable hiding selectors    */
+/* ─────────────────────────────────────── */
+
+[data-testid="stStatusWidget"],
+[data-testid="stDecoration"],
 .stDeployButton,
+.stAppDeployButton,           /* ← most common for deploy in 1.38+ */
 .viewerBadge,
-#viewerBadge {
+#viewerBadge,
+[data-testid="stAppViewBadge"] {
     display: none !important;
     visibility: hidden !important;
     height: 0 !important;
     width: 0 !important;
     opacity: 0 !important;
-    pointer-events: none !important;
 }
 
-/* 2. REMOVE EXTRA BOTTOM PADDING (Fixes the white bar on mobile) */
-.main .block-container {
-    padding-bottom: 0rem !important;
+/* Extra aggressive — hide bottom-right floating container if needed */
+.stApp [data-testid*="chrome"] > div:last-child,
+.stApp > div[data-testid="stToolbar"] {
+    display: none !important;
 }
-
-/* Ensure the app content takes up the full height without scrolling for ghosts */
-.stApp {
-    bottom: 0 !important;
-    height: 100vh !important;
-}
-                        
+                                    
 /* Sidebar background */
 section[data-testid="stSidebar"] > div {
     background: linear-gradient(180deg, #2a0b5e 0%, #4a167f 100%);
