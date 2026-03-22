@@ -165,6 +165,20 @@ div[data-baseweb="select"] input {
         color: #f3f4f6;
     }
 }
+/* Hide the 'Running' status and decorative icons at the bottom */
+div[data-testid="stStatusWidget"] {
+    display: none !important;
+}
+
+/* Hide any remaining footer or 'Made with Streamlit' links */
+footer {
+    display: none !important;
+}
+
+/* Specifically target the floating elements at the bottom right/left */
+.stDeployButton, .viewerBadge {
+    display: none !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -505,7 +519,7 @@ def show_login_page():
         # ============================================================
         # ✅ PROGRAMME SELECTOR
         # ============================================================
-        st.markdown("### 🎓 Class / Programme")
+        st.markdown('<p style="font-size: 16px; font-weight: 400; margin-bottom: 8px;">🎓 Class / Programme</p>', unsafe_allow_html=True)
 
         with st.expander(f"📘 {st.session_state.selected_programme}", expanded=False):
 
