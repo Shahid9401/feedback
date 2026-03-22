@@ -728,6 +728,11 @@ def show_questions_page():
 
     # Main
     render_header()
+    st.markdown("""
+    <script>
+    window.scrollTo(0, 0);
+    </script>
+    """, unsafe_allow_html=True)
     st.markdown("##  Students Feedback (2024-25)")
 
     # ✅ Using FORM (smooth for mobile - no flicker on each click)
