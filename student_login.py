@@ -15,11 +15,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-[client]
-toolbarMode = "viewer"      # or "minimal" — hides most dev icons/buttons
-
-[ui]
-hideTopBar = true           # hides the top loading / running man area
 # ============================================================
 # ✅ GLOBAL CSS (HIDE STREAMLIT UI + PREMIUM UI)
 # ============================================================
