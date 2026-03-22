@@ -61,7 +61,19 @@ body {
     padding: 14px;
     margin-top: 10px;
 }
+            
+/* Hide Streamlit floating elements */
+[data-testid="stToolbar"] {
+    display: none !important;
+}
 
+[data-testid="stDecoration"] {
+    display: none !important;
+}
+
+[data-testid="stStatusWidget"] {
+    display: none !important;
+}
 /* Sidebar background */
 section[data-testid="stSidebar"] > div {
     background: linear-gradient(180deg, #2a0b5e 0%, #4a167f 100%);
